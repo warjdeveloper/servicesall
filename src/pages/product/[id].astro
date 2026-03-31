@@ -1,0 +1,31 @@
+---
+// astro
+// third
+// own
+import Layout from '@/layouts/Layout.astro';
+// code
+export const getStaticPaths = () => [{
+        params: { id: '1' },
+    }, {
+        params: { id: '2' },
+    }, {
+        params: { id: '3' },
+    }, {
+        params: { id: '4' },
+    }, {
+        params: { id: '5' },
+    }, {
+        params: { id: '6' },
+    }, {
+        params: { id: '7' },
+    }, {
+        params: { id: '8' },
+    }, {
+        params: { id: '9' },
+    }];
+---
+
+<Layout title="Product Page" description="Detalles del producto">
+    <h1>Product {Astro.params.id}</h1>
+    <p>Detalles del producto {Astro.params.id}.</p>
+</Layout>
