@@ -1,31 +1,41 @@
 ---
 // astro
+import { getCollection, render } from 'astro:content';
 // third
 // own
 import Layout from '@/layouts/Layout.astro';
+import BtnAddProductCart from '@/components/BtnAddProductCart.astro';
 // code
-export const getStaticPaths = () => [{
-        params: { id: '1' },
-    }, {
-        params: { id: '2' },
-    }, {
-        params: { id: '3' },
-    }, {
-        params: { id: '4' },
-    }, {
-        params: { id: '5' },
-    }, {
-        params: { id: '6' },
-    }, {
-        params: { id: '7' },
-    }, {
-        params: { id: '8' },
-    }, {
-        params: { id: '9' },
-    }];
+export const prerender = true;
+
+export async function getStaticPaths() {
+    const products = await getCollection('products');
+    return products.map(product => ({
+        params: { id: product.id },
+        props: { product },
+    }));
+}
+
+const { product } = Astro.props;
+const { Content } = await render(product);
 ---
 
 <Layout title="Product Page" description="Detalles del producto">
-    <h1>Product {Astro.params.id}</h1>
-    <p>Detalles del producto {Astro.params.id}.</p>
+    <div class="m-4 flex flex-col items-center">
+        <div class="prose prose-invert">
+            <img transition:name={`img-${product.id}`} src={`/${product.data.img}`} alt={product.data.title} class="rounded" />
+            <h1>{product.data.title}</h1>
+            <p>Price: <strong>${product.data.price.toFixed(2)}</strong></p>
+            <BtnAddProductCart />
+            <p>{product.data.description}.</p>
+            <Content />
+        </div>
+    </div>
 </Layout>
+
+<!-- <style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style> -->

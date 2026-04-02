@@ -1,30 +1,34 @@
 ---
-import type { GetStaticPaths } from "astro";
-import { map } from "astro:schema";
-
 // astro
+import { getCollection } from 'astro:content';
 // third
 // own
+import SearchProducts from './SearchProducts.astro';
+import BtnAddProductCart from '@/components/BtnAddProductCart.astro';
 // code
-const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
----
+const products = await getCollection('products');
 
+export const prerender = true;
+---
 <div id="container">
-	{
-		nums.map((num) => (
-			<div class="card">
-				<a href={`/product/${num}`}>
-					<img src="https://imgs.search.brave.com/Z5hOlL5ZOHKK6v2htN1Pl7i3X_pKeNkpUOBLXA9Z5Pc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbXNw/cm9kdWN0cy5jb20v/Y2RuL3Nob3AvZmls/ZXMvMjE4MzUxXzQ4/MHg0ODAuanBnP3Y9/MTcyMjk3MjYyOA" alt={`Product ${num}`} />
-				</a>
-				<div>
-					<h3>{`Product ${num}`}</h3>
-					<p>{`Descripción del producto ${num}.`}</p>
-					<p>{`Precio: $XX.XX`}</p>
-					<button class="btn-add-cart">Agregar al carrito</button>
+	<SearchProducts />
+	<div id="container-cards">
+		{
+			products.map((product) => (
+				<div class="card">
+					<a href={`/product/${product.id}`}>
+						<img transition:name={`img-${product.id}`} src={`/${product.data.img}`} alt={product.data.title} />
+					</a>
+					<div>
+						<h2 class="pb-2">{product.data.title}</h2>
+						<p class="pb-1">{product.data.description}</p>
+						<p class="pb-4">Precio: <strong>{`$${product.data.price.toFixed(2)}`}</strong></p>
+						<BtnAddProductCart />
+					</div>
 				</div>
-			</div>
-		))
-	}
+			))
+		}
+	</div>
 </div>
 
 <style>
@@ -33,11 +37,11 @@ const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 		color: inherit;
 	}
 
-    #container {
+    #container-cards {
         display: grid;
 		place-items: center;
 		grid-template-columns: repeat(auto-fill, 250px);
-		grid-auto-rows: 400px;
+		/* grid-auto-rows: 400px; */
 		gap: 1rem;
 		justify-content: center;
 		align-items: stretch;
@@ -53,8 +57,8 @@ const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 	.card:hover {
 		box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-		/* transform: translateY(-5px);
-		transition: all 0.3s ease; */
+		transform: translateY(-5px);
+		transition: all 0.3s ease;
 	}
 
 	.card img {
@@ -68,25 +72,10 @@ const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 		padding: 0.5rem;
 	}
 
-	.card h3 {
+	.card h2 {
 		margin: 0;
 		padding: 0;
-	}
-
-	.btn-add-cart {
-		background-color: var(--color-primary);
-		color: var(--color-text-mode-dark);
-		border: none;
-		padding: 0.5rem 1rem;
-		border-radius: 8px;
-		cursor: pointer;
-		width: 100%;
-	}
-
-	.btn-add-cart:hover {
-		background-color: transparent;
-		color: var(--color-text-mode-dark);
-		border: 1px solid var(--color-primary);
-		transition: all 0.3s ease;
+		font-size: 20px;
+		font-weight: bold;
 	}
 </style>

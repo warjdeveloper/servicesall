@@ -12,6 +12,13 @@
         backdrop-filter: blur(10px);
         justify-content: center;
         align-content: center;
+        position: sticky;
+        top: 0;
+
+        animation: enhance-header linear both;
+        animation-timeline: scroll();
+        animation-range: 0 100px;
+        z-index: 1;
     }
     nav a {
         color: var(--color-text-mode-light);
@@ -19,4 +26,13 @@
         font-weight: bold;
         justify-content: center;
     }
+
+    @keyframes enhance-header {
+    to {
+        background-color: rgba(255, 255, 255, .9);
+        backdrop-filter: blur(10px);
+        font-size: 18px;
+        color: #000;
+    }
+}
 </style>
