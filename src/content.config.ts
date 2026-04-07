@@ -9,6 +9,7 @@ const products = defineCollection({
         description: z.string(),
         img: z.string(),
         price: z.number(),
+        category: z.string(),
     }),
 });
 

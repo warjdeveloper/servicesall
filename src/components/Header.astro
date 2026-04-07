@@ -1,38 +1,110 @@
 <nav>
-	<a href="/">Inicio</a>
+    <div class="nav-container">
+        <a href="/" class="logo text-black">Inicio</a>
+
+        <!-- botón hamburguesa -->
+        <button id="menu-btn" aria-label="Abrir menú">
+            ☰
+        </button>
+
+        <!-- menú -->
+        <div id="menu" class="menu">
+            <a href="/">Inicio</a>
+            <a href="/cart">Carrito</a>
+            <!-- <a href="#">About</a>
+            <a href="#">Contacto</a> -->
+        </div>
+    </div>
 </nav>
 
 <style>
     nav {
-        display: flex;
-        gap: 1rem;
-        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+
         background-color: var(--color-background-mode-light);
         opacity: 0.8;
         backdrop-filter: blur(10px);
-        justify-content: center;
-        align-content: center;
-        position: sticky;
-        top: 0;
 
         animation: enhance-header linear both;
         animation-timeline: scroll();
         animation-range: 0 100px;
-        z-index: 1;
     }
-    nav a {
-        color: var(--color-text-mode-light);
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .menu {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .menu a {
         text-decoration: none;
         font-weight: bold;
-        justify-content: center;
+        color: var(--color-text-mode-light);
+    }
+
+    /* botón hamburguesa */
+    #menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* 📱 móvil */
+    @media (max-width: 768px) {
+        #menu-btn {
+            display: block;
+            color: black;
+        }
+
+        .menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+
+            flex-direction: column;
+            background: white;
+            padding: 0 1rem; /* ⬅ padding vertical 0 para que no se vea cuando está cerrado */
+
+            max-height: 0;
+            overflow-y: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .menu.open {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            max-height: 80vh; /* efecto acordeón */
+            overflow-y: auto;       /* 🔹 scroll solo dentro del menú */
+        }
     }
 
     @keyframes enhance-header {
-    to {
-        background-color: rgba(255, 255, 255, .9);
-        backdrop-filter: blur(10px);
-        font-size: 18px;
-        color: #000;
+        to {
+            background-color: rgba(255, 255, 255, .9);
+            backdrop-filter: blur(10px);
+            font-size: 18px;
+            color: #000;
+        }
     }
-}
 </style>
+
+<script>
+    document.addEventListener('click', (e) => {
+        if (e.target.id === 'menu-btn') {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('open');
+            e.target.textContent = menu.classList.contains('open') ? '✕' : '☰';
+        }
+    });
+</script>

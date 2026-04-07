@@ -3,7 +3,7 @@ title: Product 1
 description: Description product.
 img: imgs/products/product-1.webp
 price: 10
-category: motos
+category: category 1
 ---
 
 Hoy en día es imposible imaginar el desarrollo de software sin Git. **Según la encuesta de Stack Overflow de 2018, casi el 90% de los desarrolladores usaban Git para manejar su código fuente**. Si te preguntas por qué no hay encuestas más recientes... ¡Es simplemente porque no preguntaron más! Su dominio empezaba a ser tan evidente que no dejaba margen a la curiosidad.

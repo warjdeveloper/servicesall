@@ -1,0 +1,153 @@
+---
+// astro
+// third
+// own
+import Layout from "@/layouts/Layout.astro";
+// code
+---
+<Layout title="Carrito de compras" description="Aquí se mostrarán los productos que has agregado a tu carrito.">
+    <!-- Carrito de Compras Responsive con texto blanco y fondos transparentes -->
+    <div class="max-w-5xl mx-auto p-4">
+        <h2 class="text-2xl font-bold mb-6 text-center text-white">Tu Carrito</h2>
+
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Lista de productos -->
+            <div class="flex-1 rounded-lg p-4">
+                <h3 class="font-semibold text-lg mb-4 text-white">Productos</h3>
+
+                <!-- Producto -->
+                <div class="flex flex-col sm:flex-row items-center justify-between border-b py-3">
+                    <div class="flex items-center gap-4">
+                        <!-- <img src="https://via.placeholder.com/80" alt="Producto" class="w-20 h-20 object-cover rounded"> -->
+                        <div>
+                            <h4 class="font-medium text-white">Producto 1</h4>
+                            <p class="text-white text-sm">Descripción breve</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-2 sm:mt-0">
+                        <input type="number" min="1" value="1" class="w-16 border rounded p-1 text-center text-white bg-transparent">
+                        <span class="font-semibold text-white">$25.00</span>
+                        <button class="text-white hover:text-gray-300 font-bold">Eliminar</button>
+                    </div>
+                </div>
+
+                <!-- Producto -->
+                <div class="flex flex-col sm:flex-row items-center justify-between border-b py-3">
+                    <div class="flex items-center gap-4">
+                        <!-- <img src="https://via.placeholder.com/80" alt="Producto" class="w-20 h-20 object-cover rounded"> -->
+                        <div>
+                            <h4 class="font-medium text-white">Producto 2</h4>
+                            <p class="text-white text-sm">Descripción breve</p>
+                        </div>
+                    </div>
+                        <div class="flex items-center gap-3 mt-2 sm:mt-0">
+                        <input type="number" min="1" value="2" class="w-16 border rounded p-1 text-center text-white bg-transparent">
+                        <span class="font-semibold text-white">$40.00</span>
+                        <button class="text-white hover:text-gray-300 font-bold">Eliminar</button>
+                    </div>
+                </div>
+
+                <!-- Producto -->
+                <div class="flex flex-col sm:flex-row items-center justify-between border-b py-3">
+                    <div class="flex items-center gap-4">
+                        <!-- <img src="https://via.placeholder.com/80" alt="Producto" class="w-20 h-20 object-cover rounded"> -->
+                        <div>
+                            <h4 class="font-medium text-white">Producto 3</h4>
+                            <p class="text-white text-sm">Descripción breve</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-2 sm:mt-0">
+                        <input type="number" min="1" value="1" class="w-16 border rounded p-1 text-center text-white bg-transparent">
+                        <span class="font-semibold text-white">$30.00</span>
+                        <button class="text-white hover:text-gray-300 font-bold">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen y Checkout -->
+            <div class="w-full md:w-1/3 rounded-lg p-4 flex flex-col gap-4">
+                <h3 class="font-semibold text-lg mb-2 text-white">Resumen</h3>
+                <div class="flex justify-between text-white">
+                    <span>Subtotal</span>
+                    <span>$95.00</span>
+                </div>
+                <div class="flex justify-between font-bold text-lg text-white">
+                    <span>Total</span>
+                    <span>$95.00</span>
+                </div>
+                <button class="border border-white text-white rounded-lg py-2 mt-4 hover:bg-white hover:text-black transition">
+                    Proceder al Pago
+                </button>
+                <button id="generateInvoice" class="border border-white text-white rounded-lg py-2 hover:bg-white hover:text-black transition">
+                    Generar Factura del Carrito
+                </button>
+                <button class="border border-white text-white rounded-lg py-2 hover:bg-white hover:text-black transition">
+                    Limpiar carrito
+                </button>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+    const { jsPDF } = window.jspdf;
+
+    // ---------------- DATA DUMMY ----------------
+    const cartData = [
+        { name: "Producto A", price: 25, qty: 1 },
+        { name: "Producto B", price: 40, qty: 2 },
+        { name: "Producto C", price: 15, qty: 3 }
+    ];
+
+    // ---------------- GENERAR FACTURA ----------------
+    document.getElementById('generateInvoice').addEventListener('click', () => {
+        const invoiceNumber = 'FAC-' + Math.floor(Math.random() * 100000);
+        const date = new Date().toLocaleDateString();
+        const clientName = prompt("Ingrese nombre del cliente:", "Cliente Demo") || "Cliente Demo";
+
+        let total = 0;
+        
+        // Crear un nuevo PDF
+        const doc = new jsPDF();
+
+        let y = 10; // posición vertical inicial
+        doc.setFontSize(16);
+        doc.text("Factura Electrónica", 105, y, { align: "center" });
+        y += 10;
+
+        doc.setFontSize(12);
+        doc.text(`Factura N°: ${invoiceNumber}`, 10, y);
+        y += 6;
+        doc.text(`Fecha: ${date}`, 10, y);
+        y += 6;
+        doc.text(`Cliente: ${clientName}`, 10, y);
+        y += 10;
+
+        // Tabla de productos
+        doc.text("Producto           Cantidad   Precio Unitario   Subtotal", 10, y);
+        y += 6;
+
+        cartData.forEach(item => {
+            const subtotal = item.price * item.qty;
+            total += subtotal;
+
+            // Ajustar texto para alinear columnas (simple)
+            const line = `${item.name.padEnd(18)}   ${item.qty.toString().padEnd(8)}   $${item.price.toFixed(2).padEnd(14)}   $${subtotal.toFixed(2)}`;
+            doc.text(line, 10, y);
+            y += 6;
+        });
+
+        y += 4;
+        doc.setFontSize(14);
+        doc.text(`Total: $${total.toFixed(2)}`, 150, y, { align: "right" });
+
+        y += 10;
+        doc.setFontSize(10);
+        doc.text("Gracias por su compra!", 105, y, { align: "center" });
+
+        // ---------------- DESCARGAR PDF ----------------
+        doc.save(`Factura_${invoiceNumber}.pdf`);
+    });
+</script>
