@@ -26,7 +26,7 @@ const { Content } = await render(product);
             <img transition:name={`img-${product.id}`} src={`/${product.data.img}`} alt={product.data.title} class="rounded" />
             <h1>{product.data.title}</h1>
             <p>Price: <strong>${product.data.price.toFixed(2)}</strong></p>
-            <BtnAddProductCart />
+            <BtnAddProductCart product={product.data} productId={product.id} />
             <p>{product.data.description}.</p>
             <Content />
         </div>

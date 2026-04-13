@@ -3,7 +3,7 @@
 import { getCollection } from 'astro:content';
 // third
 // own
-import SearchProducts from './SearchProducts.astro';
+import SearchProducts from '@/components/SearchProducts.astro';
 import BtnAddProductCart from '@/components/BtnAddProductCart.astro';
 // code
 const products = await getCollection('products');
@@ -23,7 +23,7 @@ export const prerender = true;
 						<h2 class="pb-2">{product.data.title}</h2>
 						<p class="pb-1">{product.data.description}</p>
 						<p class="pb-4">Precio: <strong>{`$${product.data.price.toFixed(2)}`}</strong></p>
-						<BtnAddProductCart />
+						<BtnAddProductCart product={product.data} productId={product.id} />
 					</div>
 				</div>
 			))

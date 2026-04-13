@@ -1,5 +1,5 @@
 // own
-import { STORAGE_TYPES } from "@store/consts.js";
+import { STORAGE_TYPES } from "@/store/consts.js";
 
 // =====================================================
 // PROJECT STRUCTURE

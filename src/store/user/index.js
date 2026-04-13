@@ -1,9 +1,9 @@
-import { STORAGE_TYPES } from "@store/consts.js";
+import { STORAGE_TYPES } from "@/store/consts.js";
 // =====================================================
 // store/user/index.js (Redux Toolkit style)
 // =====================================================
 
-import { createModule } from "@store/index.js";
+import { createModule } from "@/store/index.js";
 
 const user = createModule({
     name: "user",
@@ -28,7 +28,7 @@ const user = createModule({
     // 🧩 MIDDLEWARES
     middlewares: [
         (next, prev, action) => {
-            console.log("[USER]", action, next);
+            // console.log("[USER]", action, next);
             return next;
         }
     ]

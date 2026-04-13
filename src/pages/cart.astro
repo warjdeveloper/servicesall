@@ -3,6 +3,7 @@
 // third
 // own
 import Layout from "@/layouts/Layout.astro";
+import BtnAddProductCart from "@/components/BtnAddProductCart.astro";
 // code
 ---
 <Layout title="Carrito de compras" description="Aquí se mostrarán los productos que has agregado a tu carrito.">
@@ -25,7 +26,8 @@ import Layout from "@/layouts/Layout.astro";
                         </div>
                     </div>
                     <div class="flex items-center gap-3 mt-2 sm:mt-0">
-                        <input type="number" min="1" value="1" class="w-16 border rounded p-1 text-center text-white bg-transparent">
+                        <!-- <input type="number" min="1" value="1" class="w-16 border rounded p-1 text-center text-white bg-transparent"> -->
+                        <BtnAddProductCart product={{title:"title"}} productId={'product-1'} />
                         <span class="font-semibold text-white">$25.00</span>
                         <button class="text-white hover:text-gray-300 font-bold">Eliminar</button>
                     </div>
