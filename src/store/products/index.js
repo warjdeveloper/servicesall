@@ -28,7 +28,7 @@ const products = createModule({
             };
         },
 
-        remove: (state, id) => {
+        subtrac: (state, id) => {
             const existing = state.list.find(prod => prod.id === id);
 
             if (!existing) return state;
@@ -41,6 +41,16 @@ const products = createModule({
 
             return {
                 list: state.list.map(prod => prod.id === id ? { ...prod, quantity: prod.quantity - 1 } : prod )
+            };
+        },
+
+        remove: (state, id) => {
+            const existing = state.list.find(prod => prod.id === id);
+
+            if (!existing) return state;
+
+            return {
+                list: state.list.filter(prod => prod.id !== id)
             };
         },
 

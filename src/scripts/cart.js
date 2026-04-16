@@ -1,9 +1,8 @@
+// store
 import products from "@/store/products/index.js";
 import { effect } from "@/store/index.js";
 
 export function initCart(element) {
-    // store
-
     // definitions
     const main_element = element;
     const id = main_element.dataset.id;
@@ -42,7 +41,7 @@ export function initCart(element) {
 
         if (!item) return;
 
-        products.actions.remove(id);
+        products.actions.subtrac(id);
     });
 
     btn_plus.addEventListener("click", () => {
