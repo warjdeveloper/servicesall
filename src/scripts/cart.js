@@ -57,4 +57,7 @@ export function initCart(element) {
     });
 }
 
-document.querySelectorAll(".product-btns").forEach(initCart);
+// document.querySelectorAll(".product-btns").forEach(initCart);
+document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll(".product-btns").forEach(initCart);
+});

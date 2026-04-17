@@ -15,13 +15,19 @@ export const prerender = true;
 	<div id="container-cards">
 		{
 			products.map((product) => (
-				<div class="card">
+				<div
+					class="card"
+					data-title={product.data.title.toLowerCase()}
+					data-description={product.data.description.toLowerCase()}
+					data-category={product.data.category.toLowerCase()}
+				>
 					<a href={`/product/${product.id}`}>
 						<img transition:name={`img-${product.id}`} src={`/${product.data.img}`} alt={product.data.title} />
 					</a>
 					<div>
 						<h2 class="pb-2">{product.data.title}</h2>
 						<p class="pb-1">{product.data.description}</p>
+						<p class="pb-1">Category: {product.data.category}</p>
 						<p class="pb-4">Precio: <strong>{`$${product.data.price.toFixed(2)}`}</strong></p>
 						<BtnAddProductCart product={product.data} productId={product.id} />
 					</div>
