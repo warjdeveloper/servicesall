@@ -3,12 +3,11 @@
 import { getCollection } from 'astro:content';
 // third
 // own
+import "@/styles/home.css";
 import SearchProducts from '@/components/SearchProducts.astro';
 import BtnAddProductCart from '@/components/BtnAddProductCart.astro';
 // code
 const products = await getCollection('products');
-
-export const prerender = true;
 ---
 <div id="container">
 	<SearchProducts />
@@ -36,52 +35,3 @@ export const prerender = true;
 		}
 	</div>
 </div>
-
-<style>
-	a {
-		text-decoration: none;
-		color: inherit;
-	}
-
-    #container-cards {
-        display: grid;
-		place-items: center;
-		grid-template-columns: repeat(auto-fill, 250px);
-		/* grid-auto-rows: 400px; */
-		gap: 1rem;
-		justify-content: center;
-		align-items: stretch;
-		justify-items: stretch;
-		align-content: start;
-		padding: 1rem;
-    }
-
-	.card {
-		box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-		border-radius: 8px;
-	}
-
-	.card:hover {
-		box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-		transform: translateY(-5px);
-		transition: all 0.3s ease;
-	}
-
-	.card img {
-		width: 100%;
-		height: auto;
-		object-fit: cover;
-		border-radius: 8px;
-	}
-
-	.card div {
-		padding: 0.5rem;
-	}
-
-	.card h2 {
-		margin: 0;
-		padding: 0;
-		font-size: 20px;
-		font-weight: bold;
-	}
-</style>

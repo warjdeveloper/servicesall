@@ -1,9 +1,9 @@
-import { STORAGE_TYPES } from "@/store/consts.js";
+import { STORAGE_TYPES } from "../consts.js";
 // =====================================================
-// store/user/index.js (Redux Toolkit style)
+// rute (Redux Toolkit style)
 // =====================================================
 
-import { createModule } from "@/store/index.js";
+import { createModule } from "../index.js";
 
 const user = createModule({
     name: "user",
@@ -47,12 +47,12 @@ export default user;
 // USAGE (ANYWHERE)
 // =====================================================
 
-// import user from "@/store/user/index.js"
+// import user from "rute"
 
 // user.actions.login({ name: "William" })
 
 // user.select(state => state, console.log)
 
 // GLOBAL STATE
-// import { getGlobalState } from "@/store/index.js"
+// import { getGlobalState } from "rute"
 // console.log(getGlobalState())

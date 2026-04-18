@@ -1,5 +1,5 @@
 // own
-import { STORAGE_TYPES } from "@/store/consts.js";
+import { STORAGE_TYPES } from "./consts.js";
 
 // =====================================================
 // PROJECT STRUCTURE
@@ -357,5 +357,5 @@ export { createModule };
 // =====================================================
 
 // GLOBAL STATE
-// import { getGlobalState } from "@/store/index.js"
+// import { getGlobalState } from "rute"
 // console.log(getGlobalState())

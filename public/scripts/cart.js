@@ -1,6 +1,6 @@
 // store
-import products from "@/store/products/index.js";
-import { effect } from "@/store/index.js";
+import products from "./store/products/index.js";
+import { effect } from "./store/index.js";
 
 export function initCart(element) {
     // definitions

@@ -105,4 +105,5 @@ function initFilters() {
         });
     }
 }
+
 document.addEventListener("astro:page-load", initFilters);

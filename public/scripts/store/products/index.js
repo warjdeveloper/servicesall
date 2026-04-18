@@ -1,9 +1,9 @@
-import { STORAGE_TYPES } from "@/store/consts.js";
+import { STORAGE_TYPES } from "../consts.js";
 // =====================================================
-// store/products/index.js (Redux Toolkit style)
+// rute (Redux Toolkit style)
 // =====================================================
 
-import { createModule } from "@/store/index.js";
+import { createModule } from "../index.js";
 
 const products = createModule({
     name: "products",
@@ -71,12 +71,12 @@ export default products;
 // USAGE (ANYWHERE)
 // =====================================================
 
-// import products from "@/store/products/index.js"
+// import products from "rute"
 
 // products.actions.add({ id: 1, name: "Laptop" })
 
 // products.select(state => state.list, console.log)
 
 // GLOBAL STATE
-// import { getGlobalState } from "@/store/index.js"
+// import { getGlobalState } from "rute"
 // console.log(getGlobalState())

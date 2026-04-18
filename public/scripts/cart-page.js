@@ -1,5 +1,5 @@
-import products from "@/store/products";
-import { effect } from "@/store/index.js";
+import products from "./store/products/index.js";
+import { effect } from "./store/index.js";
 
 function initCartPage() {
     const container = document.getElementById("cart-list");
