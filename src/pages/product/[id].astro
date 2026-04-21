@@ -3,6 +3,7 @@
 import { getCollection, render } from 'astro:content';
 // third
 // own
+import '@/styles/slider.css';
 import Layout from '@/layouts/Layout.astro';
 import BtnAddProductCart from '@/components/BtnAddProductCart.astro';
 // code
@@ -16,13 +17,71 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+const imgs = product.data.media.imgs;
+const video = product.data.media.video;
 const { Content } = await render(product);
+
+const slides = [
+    ...imgs.map(img => ({ type: "image", ...img })),
+    ...(video ? [{ alt: `Video product -> ${product.data.title}`, ...video }] : [])
+];
 ---
 
 <Layout title="Product Page" description="Detalles del producto">
-    <div class="m-4 flex flex-col items-center">
+    <div class="m-8 flex flex-col items-center">
         <div class="prose prose-invert">
-            <img transition:name={`img-${product.id}`} src={`/${product.data.img}`} alt={product.data.title} class="rounded" />
+            <a href="/" class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg> Volver
+            </a>
+            <div class="slider" data-slider>
+                <div class="slides">
+                    {
+                        slides.map((slide, index) => (
+                            <div class="slide" data-index={index}>
+                                {
+                                    slide.type === "image" ? (
+                                        <img src={slide.src} alt={slide.alt} />
+                                    ) : (
+                                        <video src={slide.src} controls />
+                                    )
+                                }
+                            </div>
+                        ))
+                    }
+                    <!-- btns -->
+                    <button class="nav prev" data-prev>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="nav next" data-next>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                <div class="thumbnails">
+                    {
+                        slides.map((slide, index) => (
+                            <button class="thumb" data-thumb={index}>
+                                {
+                                    slide.type === "image" ? (
+                                        <img src={slide.src} alt={slide.alt} />
+                                    ) : (
+                                        <div class="thumb-video">
+                                            <video src={slide.src} muted preload="metadata" />
+                                            <span class="play-icon">▶</span>
+                                        </div>
+                                    )
+                                }
+                            </button>
+                        ))
+                    }
+                </div>
+            </div>
+            <!-- <img transition:name={`img-${product.id}`} src={product.data.media.imgs[0].src} alt={product.data.media.imgs[0].alt} class="rounded" /> -->
             <h1>{product.data.title}</h1>
             <p>Price: <strong>${product.data.price.toFixed(2)}</strong></p>
             <BtnAddProductCart product={product.data} productId={product.id} />
@@ -31,3 +90,5 @@ const { Content } = await render(product);
         </div>
     </div>
 </Layout>
+
+<script type="module" src="/scripts/slider.js"></script>

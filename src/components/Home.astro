@@ -21,7 +21,7 @@ const products = await getCollection('products');
 					data-category={product.data.category.toLowerCase()}
 				>
 					<a href={`/product/${product.id}`}>
-						<img transition:name={`img-${product.id}`} src={`/${product.data.img}`} alt={product.data.title} />
+						<img src={product.data.media.imgs[0].src} alt={product.data.media.imgs[0].alt} />
 					</a>
 					<div>
 						<h2 class="pb-2">{product.data.title}</h2>

@@ -7,9 +7,20 @@ const products = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
-        img: z.string(),
         price: z.number(),
         category: z.string(),
+        media: z.object({
+            imgs: z.array(
+                z.object({
+                    src: z.string(),
+                    alt: z.string(),
+                })
+            ).min(1).max(6),
+            video: z.object({
+                src: z.string(),
+                type: z.string(),
+            }).optional(),
+        }),
     }),
 });
 

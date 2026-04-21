@@ -28,7 +28,7 @@ function initCartPage() {
                         <!-- Producto -->
                         <div class="flex flex-col sm:flex-row items-center justify-between border-b py-3">
                             <div class="flex items-center gap-4">
-                                <img src="/${item.product.img}" alt="Producto" class="w-20 h-20 object-cover rounded">
+                                <img src="${item.product.media.imgs[0].src}" alt="${item.product.media.imgs[0].alt}" class="w-20 h-20 object-cover rounded">
                                 <div>
                                     <h4 class="font-medium text-white">${item.product.title}</h4>
                                     <p class="text-white text-sm">${item.product.description}</p>
