@@ -1,37 +1,41 @@
 ---
 // astro
-import { getCollection } from 'astro:content';
 // third
 // own
-import "@/styles/home.css";
-import SearchProducts from '@/components/SearchProducts.astro';
-import BtnAddProductCart from '@/components/BtnAddProductCart.astro';
 // code
-const products = await getCollection('products');
 ---
-<div id="container">
-	<SearchProducts />
-	<div id="container-cards">
-		{
-			products.map((product) => (
-				<div
-					class="card"
-					data-title={product.data.title.toLowerCase()}
-					data-description={product.data.description.toLowerCase()}
-					data-category={product.data.category.toLowerCase()}
-				>
-					<a href={`/product/${product.id}`}>
-						<img src={product.data.media.imgs[0].src} alt={product.data.media.imgs[0].alt} />
-					</a>
-					<div>
-						<h2 class="pb-2">{product.data.title}</h2>
-						<p class="pb-1">{product.data.description}</p>
-						<p class="pb-1">Category: {product.data.category}</p>
-						<p class="pb-4">Precio: <strong>{`$${product.data.price.toFixed(2)}`}</strong></p>
-						<BtnAddProductCart product={product.data} productId={product.id} />
-					</div>
-				</div>
-			))
-		}
-	</div>
-</div>
+<main class="home p-2">
+
+	<section class="hero">
+		<h1>Tu tienda online simple y rápida</h1>
+		<p>Compra directo, sin complicaciones.</p>
+
+		<div class="hero-actions">
+		<a href="/products">Ver catálogo</a>
+		<a href="https://wa.me/XXXXXXXXXX">WhatsApp</a>
+		</div>
+	</section>
+
+	<section class="highlights">
+		<h2>Destacados</h2>
+		<div class="grid">
+		<!-- cards dinámicas -->
+		</div>
+	</section>
+
+	<section class="features">
+		<h2>¿Por qué elegirnos?</h2>
+
+		<ul>
+		<li>Compra rápida</li>
+		<li>Soporte por WhatsApp</li>
+		<li>Catálogo actualizado</li>
+		</ul>
+	</section>
+
+	<section class="cta">
+		<h2>Explora todos los productos</h2>
+		<a href="/products">Ir al catálogo</a>
+	</section>
+
+</main>

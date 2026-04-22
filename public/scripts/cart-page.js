@@ -93,7 +93,7 @@ document.addEventListener("click", (e) => {
         const message = "Hola, quiero proceder con el pago. Adjunto la factura generada del carrito.";
 
 		// ⚠️ reemplaza con tu número (formato internacional sin +)
-		const phone = "571234567890";
+		const phone = "570123456789";
 
 		const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
