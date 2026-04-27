@@ -15,21 +15,55 @@ const products = await getCollection('products');
 		{
 			products.map((product) => (
 				<div
-					class="card"
+					class="card relative z-0 group border border-(--border) rounded-2xl overflow-hidden bg-(--surface) hover:shadow-lg transition flex flex-col"
 					data-title={product.data.title.toLowerCase()}
 					data-description={product.data.description.toLowerCase()}
 					data-category={product.data.category.toLowerCase()}
 				>
-					<a href={`/product/${product.id}`}>
-						<img src={product.data.media.imgs[0].src} alt={product.data.media.imgs[0].alt} />
+
+					<!-- IMAGE -->
+					<a href={`/product/${product.id}`} class="p-4 pb-0 block">
+						<div class="rounded-xl overflow-hidden border border-(--border)">
+							<img
+								src={product.data.media.imgs[0].src}
+								alt={product.data.media.imgs[0].alt}
+								class="w-full h-52 object-cover group-hover:scale-105 transition duration-300 pointer-events-none"
+							/>
+						</div>
 					</a>
-					<div>
-						<h2 class="pb-2">{product.data.title}</h2>
-						<p class="pb-1">{product.data.description}</p>
-						<p class="pb-1">Category: {product.data.category}</p>
-						<p class="pb-4">Precio: <strong>{`$${product.data.price.toFixed(2)}`}</strong></p>
-						<BtnAddProductCart product={product.data} productId={product.id} />
+
+					<!-- CONTENT -->
+					<div class="p-4 flex flex-col gap-2 flex-1">
+
+						<h2 class="text-lg font-semibold text-(--text) line-clamp-1" title={product.data.title}>
+							{product.data.title}
+						</h2>
+
+						<p class="text-sm text-(--muted) line-clamp-1" title={product.data.description}>
+							{product.data.description}
+						</p>
+
+						<p class="text-sm text-(--muted) line-clamp-1" title={`Categoria: ${product.data.category}`}>
+							Categoria: {product.data.category}
+						</p>
+
+						<p class="mt-auto pt-2 text-(--text) line-clamp-1" title={`Precio: ${product.data.price.toFixed(2)}`}>
+							Precio:
+							<strong class="font-bold">
+								${product.data.price.toFixed(2)}
+							</strong>
+						</p>
+
+						<!-- CART BUTTON -->
+						<div class="pt-3">
+							<BtnAddProductCart
+								product={product.data}
+								productId={product.id}
+							/>
+						</div>
+
 					</div>
+
 				</div>
 			))
 		}

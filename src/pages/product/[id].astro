@@ -28,65 +28,129 @@ const slides = [
 ---
 
 <Layout title="Product Page" description="Detalles del producto">
-    <div class="m-8 flex flex-col items-center">
-        <div class="prose prose-invert">
-            <a href="/products" class="flex">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg> Volver
-            </a>
-            <div class="slider" data-slider>
-                <div class="slides">
-                    {
-                        slides.map((slide, index) => (
-                            <div class="slide" data-index={index}>
-                                {
-                                    slide.type === "image" ? (
-                                        <img src={slide.src} alt={slide.alt} />
-                                    ) : (
-                                        <video src={slide.src} controls />
-                                    )
-                                }
-                            </div>
-                        ))
-                    }
-                    <!-- btns -->
-                    <button class="nav prev" data-prev>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                    </button>
-                    <button class="nav next" data-next>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </button>
+    <div class="max-w-5xl mx-auto px-4 py-10 flex flex-col gap-8">
+        <!-- BACK -->
+		<a
+			href="/products"
+			class="flex items-center gap-2 text-(--text) hover:opacity-70 transition"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+				width="28" height="28" fill="none" stroke="currentColor"
+				stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<polyline points="15 18 9 12 15 6"></polyline>
+			</svg>
+			Volver
+		</a>
+
+        <!-- SLIDER -->
+        <div class="slider" data-slider>
+            <!-- CARD -->
+                <div class="relative rounded-2xl border border-(--border) bg-(--surface) shadow-sm overflow-hidden">
+
+                    <!-- SLIDES -->
+                    <div class="relative flex justify-center p-10">
+                        <div class="slides">
+                            {
+                                slides.map((slide, index) => (
+                                    <div class="slide" data-index={index}>
+                                        {
+                                            slide.type === "image" ? (
+                                                <img
+                                                    src={slide.src}
+                                                    alt={slide.alt}
+                                                    class="rounded-xl w-full object-cover"
+                                                />
+                                            ) : (
+                                                <video
+                                                    class="rounded-xl w-full"
+                                                    src={slide.src}
+                                                    controls
+                                                />
+                                            )
+                                        }
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                        <!-- NAV -->
+                        <button
+                            class="nav prev text-(--text) hover:text-(--primary) transition"
+                            data-prev
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                width="28" height="28" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+
+                        <button
+                            class="nav next text-(--text) hover:text-(--primary) transition"
+                            data-next
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                width="28" height="28" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+
+                    </div>
+
                 </div>
-                <div class="thumbnails">
-                    {
-                        slides.map((slide, index) => (
-                            <button class="thumb" data-thumb={index}>
-                                {
-                                    slide.type === "image" ? (
-                                        <img src={slide.src} alt={slide.alt} />
-                                    ) : (
-                                        <div class="thumb-video">
-                                            <video src={slide.src} muted preload="metadata" />
-                                            <span class="play-icon">▶</span>
-                                        </div>
-                                    )
-                                }
-                            </button>
-                        ))
-                    }
-                </div>
+            <div class="thumbnails mt-4 flex gap-2 overflow-x-auto">
+                {
+                    slides.map((slide, index) => (
+                        <button class="thumb border border-(--border) rounded-lg overflow-hidden" data-thumb={index}>
+                            {
+                                slide.type === "image" ? (
+                                    <img src={slide.src} alt={slide.alt} />
+                                ) : (
+                                    <div class="thumb-video">
+                                        <video class="rounded-xl w-full" src={slide.src} muted preload="metadata" />
+                                        <span class="play-icon">▶</span>
+                                    </div>
+                                )
+                            }
+                        </button>
+                    ))
+                }
             </div>
-            <h1>{product.data.title}</h1>
-            <p>Price: <strong>${product.data.price.toFixed(2)}</strong></p>
-            <BtnAddProductCart product={product.data} productId={product.id} />
-            <p>{product.data.description}.</p>
-            <Content />
         </div>
+
+        <!-- INFO -->
+		<div class="flex flex-col gap-3">
+
+			<h1 class="text-3xl font-bold text-(--text)">
+				{product.data.title}
+			</h1>
+
+			<p class="text-(--muted) text-lg">
+				{product.data.description}
+			</p>
+
+			<p class="text-(--text)">
+				Price:
+				<strong class="font-bold">
+					${product.data.price.toFixed(2)}
+				</strong>
+			</p>
+
+			<!-- CART -->
+			<div class="pt-2">
+				<BtnAddProductCart
+					product={product.data}
+					productId={product.id}
+				/>
+			</div>
+
+		</div>
+
+		<!-- CONTENT -->
+		<div class="prose max-w-none text-(--text) prose-p:text-(--muted)">
+			<Content />
+		</div>
     </div>
 </Layout>
 

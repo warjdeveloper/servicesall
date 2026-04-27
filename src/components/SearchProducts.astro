@@ -6,40 +6,79 @@ import { getCollection } from 'astro:content';
 // code
 const products = await getCollection('products');
 ---
-<div class="px-4">
-    <div class="relative">
+<div class="px-4 flex flex-col gap-3">
+
+    <!-- SEARCH -->
+    <div
+        class="flex items-center w-full mt-3 rounded-xl
+            border border-(--border)
+            bg-(--surface)
+            overflow-hidden"
+    >
+
         <input
             id="search"
             type="text"
             placeholder="Buscar producto..."
-            class="w-full px-4 py-2 pr-10 mt-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="flex-1 min-w-0 px-4 py-2
+                bg-transparent
+                text-(--text)
+                placeholder-(--muted)
+                focus:outline-none"
         />
 
-        <!-- botón limpiar -->
+        <!-- CLEAR -->
         <button
             id="clear-search"
-            class="hidden absolute right-4 top-4.5 text-gray-400 hover:text-white transition"
             type="button"
+            class="hidden shrink-0 w-11 h-11 items-center justify-center
+                border-l border-(--border)
+                text-(--text)
+                hover:bg-(--text) hover:text-(--bg)
+                transition text-2xl"
         >
             ✕
         </button>
+
     </div>
-    <h2 class="mt-1 text-bold text-2xl pl-1">Filtros...</h2>
-    <div id="categories" class="flex gap-3 mt-2 overflow-x-auto whitespace-nowrap px-2 scrollbar-hide">
-        <button 
+
+    <h2 class="text-xl md:text-2xl font-bold text-(--text) pl-1">
+        Filtros
+    </h2>
+
+    <!-- CATEGORIES -->
+    <div
+        id="categories"
+        class="flex gap-3 mt-2 overflow-x-auto whitespace-nowrap px-2 scrollbar-hide"
+    >
+
+        <!-- ALL -->
+        <button
             data-category="__all__"
-            class="category-btn px-4 py-1 text-black bg-gray-100 hover:bg-blue-500 hover:text-white rounded-full transition"
-            >
+            class="category-btn px-4 py-1 rounded-full border border-(--border)
+                text-(--text) bg-(--surface)
+                hover:bg-(--surface)
+                transition"
+        >
             Todos
         </button>
+
         {
             [...new Set(products.map(p => p.data.category))].map(category => (
-                <button data-category={category} class="category-btn px-4 py-1 text-black bg-gray-100 hover:bg-blue-500 hover:text-white rounded-full transition">
+                <button
+                    data-category={category}
+                    class="category-btn px-4 py-1 rounded-full border border-(--border)
+                        text-(--text) bg-(--surface)
+                        hover:bg-(--surface)
+                        transition"
+                >
                     {category}
                 </button>
             ))
         }
+
     </div>
+
 </div>
 
 <script type="module" src="/scripts/filters.js"></script>

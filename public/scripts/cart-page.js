@@ -11,18 +11,18 @@ function initCartPage() {
         if (!container) return; // doble seguridad
 
         if (items.length === 0) {
-            container.innerHTML = '<h2 class="text-2xl font-bold mb-6 text-center text-white">Tu carrito está vacío</h2>';
+            container.innerHTML = '<h2 class="text-2xl font-bold mb-6 text-center text-(--text)">Tu carrito está vacío</h2>';
             return;
         }
 
         // container.innerHTML = items.map(item => ``).join("");
         container.innerHTML = `
-            <h2 class="text-2xl font-bold mb-6 text-center text-white">Tu Carrito</h2>
+            <h2 class="text-2xl font-bold mb-6 text-center text-(--text)">Tu Carrito</h2>
 
             <div class="flex flex-col md:flex-row gap-6">
                 <!-- Lista de productos -->
                 <div class="flex-1 rounded-lg p-4">
-                    <h3 class="font-semibold text-lg mb-4 text-white">Productos</h3>
+                    <h3 class="font-semibold text-lg mb-4 text-(--text)">Productos</h3>
 
                     ${items.map(item => `
                         <!-- Producto -->
@@ -30,20 +30,20 @@ function initCartPage() {
                             <div class="flex items-center gap-4">
                                 <img src="${item.product.media.imgs[0].src}" alt="${item.product.media.imgs[0].alt}" class="w-20 h-20 object-cover rounded">
                                 <div>
-                                    <h4 class="font-medium text-white">${item.product.title}</h4>
-                                    <p class="text-white text-sm">${item.product.description}</p>
+                                    <h4 class="font-medium text-(--text)">${item.product.title}</h4>
+                                    <p class="text-(--muted) text-sm">${item.product.description}</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 mt-2 sm:mt-0">
                                 <div class="flex items-center gap-1">
-                                    <button data-action="minus" data-id="${item.id}" class="w-8 border rounded p-1 text-center text-white bg-transparent">-</button>
+                                    <button data-action="minus" data-id="${item.id}" class="w-8 border border-(--border) rounded p-1 text-center text-(--text) hover:bg-(--surface)">-</button>
 
-                                    <input type="number" min="1" value="${item.quantity}" disabled class="w-16 border rounded p-1 text-center text-white bg-transparent" />
+                                    <input type="number" min="1" value="${item.quantity}" disabled class="w-16 border border-(--border) rounded p-1 text-center text-(--text) bg-(--surface)" />
 
-                                    <button data-action="plus" data-id="${item.id}" class="w-8 border rounded p-1 text-center text-white bg-transparent">+</button>
+                                    <button data-action="plus" data-id="${item.id}" class="w-8 border border-(--border) rounded p-1 text-center text-(--text) hover:bg-(--surface)">+</button>
                                 </div>
-                                <span class="font-semibold text-white">$${(item.product.price * item.quantity).toFixed(2)}</span>
-                                <button data-action="remove" data-id="${item.id}" class="text-white hover:text-gray-300 font-bold">Eliminar</button>
+                                <span class="font-semibold text-(--text)">$${(item.product.price * item.quantity).toFixed(2)}</span>
+                                <button data-action="remove" data-id="${item.id}" class="text-(--text) hover:text-(--text) font-bold">Eliminar</button>
                             </div>
                         </div>
                     `).join("")}
@@ -51,22 +51,22 @@ function initCartPage() {
 
                 <!-- Resumen y Checkout -->
                 <div class="w-full md:w-1/3 rounded-lg p-4 flex flex-col gap-4">
-                    <h3 class="font-semibold text-lg mb-2 text-white">Resumen</h3>
-                    <div class="flex justify-between text-white">
+                    <h3 class="font-semibold text-lg mb-2 text-(--text)">Resumen</h3>
+                    <div class="flex justify-between text-(--text)">
                         <span>Subtotal</span>
                         <span>$${items.reduce((total, item) => total + (item.product.price * item.quantity), 0).toFixed(2)}</span>
                     </div>
-                    <div class="flex justify-between font-bold text-lg text-white">
+                    <div class="flex justify-between font-bold text-lg text-(--text)">
                         <span>Total</span>
                         <span>$${items.reduce((total, item) => total + (item.product.price * item.quantity), 0).toFixed(2)}</span>
                     </div>
-                    <button data-action="order-by-whatsapp" class="border border-white text-white rounded-lg py-2 mt-4 hover:bg-white hover:text-black transition">
+                    <button data-action="order-by-whatsapp" class="border border-(--border) text-(--muted) rounded-lg py-2 mt-4 hover:text-(--text) transition">
                         Proceder al Pago
                     </button>
-                    <button data-action="generate-invoice" class="border border-white text-white rounded-lg py-2 hover:bg-white hover:text-black transition">
+                    <button data-action="generate-invoice" class="border border-(--border) text-(--muted) rounded-lg py-2 hover:text-(--text) transition">
                         Generar Factura del Carrito
                     </button>
-                    <button data-action="clear" class="border border-white text-white rounded-lg py-2 hover:bg-white hover:text-black transition">
+                    <button data-action="clear" class="border border-(--border) text-(--muted) rounded-lg py-2 hover:text-(--text) transition">
                         Limpiar carrito
                     </button>
                 </div>

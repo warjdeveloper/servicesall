@@ -1,41 +1,146 @@
 ---
-// astro
-// third
-// own
-// code
 ---
-<main class="home p-2">
 
-	<section class="hero">
-		<h1>Tu tienda online simple y rápida</h1>
-		<p>Compra directo, sin complicaciones.</p>
+<main class="max-w-5xl mx-auto px-4 py-10 flex flex-col gap-16">
 
-		<div class="hero-actions">
-		<a href="/products">Ver catálogo</a>
-		<a href="https://wa.me/XXXXXXXXXX">WhatsApp</a>
-		</div>
-	</section>
+    <!-- HERO -->
+    <section class="text-center flex flex-col gap-6 border border-(--border) rounded-2xl p-8 md:p-12 bg-(--surface) backdrop-blur-sm">
 
-	<section class="highlights">
-		<h2>Destacados</h2>
-		<div class="grid">
-		<!-- cards dinámicas -->
-		</div>
-	</section>
+        <h1 class="text-4xl md:text-6xl font-bold text-(--text) leading-tight">
+            Tu tienda online simple y rápida
+        </h1>
 
-	<section class="features">
-		<h2>¿Por qué elegirnos?</h2>
+        <p class="text-(--muted) text-lg md:text-xl max-w-2xl mx-auto leading-8">
+            Compra directo, sin complicaciones. Encuentra productos seleccionados, agrega al carrito y gestiona tu pedido en minutos.
+        </p>
 
-		<ul>
-		<li>Compra rápida</li>
-		<li>Soporte por WhatsApp</li>
-		<li>Catálogo actualizado</li>
-		</ul>
-	</section>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
 
-	<section class="cta">
-		<h2>Explora todos los productos</h2>
-		<a href="/products">Ir al catálogo</a>
-	</section>
+            <a
+                href="/products"
+                class="border border-(--border) text-(--text) rounded-lg py-3 px-8 hover:bg-(--surface) transition"
+            >
+                Ver catálogo
+            </a>
+
+            <a
+                href="https://wa.me/XXXXXXXXXX"
+                target="_blank"
+                class="border border-(--border) text-(--text) rounded-lg py-3 px-8 hover:bg-(--surface) transition"
+            >
+                WhatsApp
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- DESTACADOS -->
+    <section class="flex flex-col gap-6">
+
+        <h2 class="text-3xl font-bold text-(--text) text-center">
+            Productos Destacados
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+            <!-- Card -->
+            <div class="border border-(--border) rounded-2xl p-5 bg-(--surface) backdrop-blur-sm">
+                <div class="h-48 rounded-lg bg-(--bg) mb-4"></div>
+
+                <h3 class="text-(--text) font-semibold text-lg mb-2">
+                    Producto Destacado
+                </h3>
+
+                <p class="text-(--muted) text-sm">
+                    Descripción breve del producto para llamar la atención del cliente.
+                </p>
+            </div>
+
+            <!-- Card -->
+            <div class="border border-(--border) rounded-2xl p-5 bg-(--surface) backdrop-blur-sm">
+                <div class="h-48 rounded-lg bg-(--bg) mb-4"></div>
+
+                <h3 class="text-(--text) font-semibold text-lg mb-2">
+                    Producto Destacado
+                </h3>
+
+                <p class="text-(--muted) text-sm">
+                    Descripción breve del producto para llamar la atención del cliente.
+                </p>
+            </div>
+
+            <!-- Card -->
+            <div class="border border-(--border) rounded-2xl p-5 bg-(--surface) backdrop-blur-sm">
+                <div class="h-48 rounded-lg bg-(--bg) mb-4"></div>
+
+                <h3 class="text-(--text) font-semibold text-lg mb-2">
+                    Producto Destacado
+                </h3>
+
+                <p class="text-(--muted) text-sm">
+                    Descripción breve del producto para llamar la atención del cliente.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+    <section class="border border-(--border) rounded-2xl p-8 bg-(--surface) backdrop-blur-sm">
+
+        <h2 class="text-3xl font-bold text-(--text) text-center mb-8">
+            ¿Por qué elegirnos?
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+
+            <div class="border border-(--border) rounded-xl p-5">
+                <h3 class="text-(--text) font-semibold text-xl mb-3">Compra rápida</h3>
+                <p class="text-(--muted) leading-7">
+                    Agrega productos al carrito y genera tu pedido en pocos pasos.
+                </p>
+            </div>
+
+            <div class="border border-(--border) rounded-xl p-5">
+                <h3 class="text-(--text) font-semibold text-xl mb-3">Soporte WhatsApp</h3>
+                <p class="text-(--muted) leading-7">
+                    Atención directa y rápida para resolver dudas o finalizar compras.
+                </p>
+            </div>
+
+            <div class="border border-(--border) rounded-xl p-5">
+                <h3 class="text-(--text) font-semibold text-xl mb-3">Catálogo actualizado</h3>
+                <p class="text-(--muted) leading-7">
+                    Productos disponibles constantemente con información clara y ordenada.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="text-center flex flex-col gap-6 border border-(--border) rounded-2xl p-8 md:p-10 bg-(--surface) backdrop-blur-sm">
+
+        <h2 class="text-3xl md:text-4xl font-bold text-(--text)">
+            Explora todos los productos
+        </h2>
+
+        <p class="text-(--muted) max-w-xl mx-auto leading-7">
+            Descubre nuestro catálogo completo y realiza tu pedido de manera rápida desde cualquier dispositivo.
+        </p>
+
+        <div>
+            <a
+                href="/products"
+                class="inline-block border border-(--border) text-(--text) rounded-lg py-3 px-8 hover:bg-(--surface) transition"
+            >
+                Ir al catálogo
+            </a>
+        </div>
+
+    </section>
 
 </main>

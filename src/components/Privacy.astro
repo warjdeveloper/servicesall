@@ -1,32 +1,97 @@
 ---
-// astro
-// third
-// own
-// code
 ---
-<main class="privacy p-2">
 
-	<h1>Política de Privacidad</h1>
+<main class="max-w-5xl mx-auto px-4 py-10 flex flex-col gap-10">
 
-	<section>
-		<h2>Información general</h2>
-		<p>
-		Este sitio no almacena datos personales sensibles.
-		</p>
-	</section>
+    <!-- HEADER -->
+    <section class="text-center border border-(--border) rounded-2xl p-8 md:p-10 bg-(--surface) backdrop-blur-sm">
 
-	<section>
-		<h2>Uso de información</h2>
-		<p>
-		Solo se utiliza para responder consultas o pedidos.
-		</p>
-	</section>
+        <h1 class="text-4xl md:text-5xl font-bold text-(--text) mb-4">
+            Política de Privacidad
+        </h1>
 
-	<section>
-		<h2>Datos de contacto</h2>
-		<p>
-		Puedes contactarnos mediante WhatsApp o correo electrónico.
-		</p>
-	</section>
+        <p class="text-(--muted) max-w-3xl mx-auto leading-8">
+            En esta sección explicamos cómo manejamos la información compartida por nuestros clientes al utilizar este sitio web y nuestros canales de atención.
+        </p>
+
+        <p class="text-(--muted) text-sm mt-4">
+            Última actualización: Abril 2026
+        </p>
+
+    </section>
+
+    <!-- INFORMACIÓN GENERAL -->
+    <section class="border border-(--border) rounded-2xl p-8 bg-(--surface) backdrop-blur-sm flex flex-col gap-4">
+
+        <h2 class="text-2xl font-semibold text-(--text)">
+            Información General
+        </h2>
+
+        <p class="text-(--muted) leading-8">
+            Este sitio web está diseñado para ofrecer una experiencia de consulta, visualización de productos y gestión de pedidos de forma simple. La información proporcionada por el usuario se limita únicamente a los datos necesarios para responder solicitudes comerciales, consultas o coordinar pedidos.
+        </p>
+
+        <p class="text-(--muted) leading-8">
+            No solicitamos ni almacenamos información financiera sensible directamente desde esta plataforma.
+        </p>
+
+    </section>
+
+    <!-- USO DE INFORMACIÓN -->
+    <section class="border border-(--border) rounded-2xl p-8 bg-(--surface) backdrop-blur-sm flex flex-col gap-4">
+
+        <h2 class="text-2xl font-semibold text-(--text)">
+            Uso de la Información
+        </h2>
+
+        <p class="text-(--muted) leading-8">
+            Los datos compartidos por el cliente serán utilizados exclusivamente para:
+        </p>
+
+        <ul class="list-disc pl-6 text-(--muted) leading-8 flex flex-col gap-2">
+            <li>Responder consultas realizadas desde el sitio.</li>
+            <li>Gestionar pedidos o solicitudes de compra.</li>
+            <li>Brindar seguimiento y soporte relacionado con productos.</li>
+            <li>Facilitar la comunicación comercial vía WhatsApp o correo electrónico.</li>
+        </ul>
+
+        <p class="text-(--muted) leading-8">
+            En ningún caso la información será comercializada, compartida o distribuida a terceros con fines ajenos a la atención del cliente.
+        </p>
+
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="border border-(--border) rounded-2xl p-8 bg-(--surface) backdrop-blur-sm flex flex-col gap-4">
+
+        <h2 class="text-2xl font-semibold text-(--text)">
+            Datos de Contacto
+        </h2>
+
+        <p class="text-(--muted) leading-8">
+            Para cualquier consulta relacionada con privacidad, pedidos o manejo de información, el usuario podrá comunicarse a través de nuestros canales oficiales de atención disponibles en este sitio web.
+        </p>
+
+        <!--
+        <div class="pt-2">
+            <a
+                href="mailto:correo@ejemplo.com"
+                class="inline-block border border-(--border) text-(--text) rounded-lg py-3 px-8 hover:bg-(--surface) transition"
+            >
+                Contactar Soporte
+            </a>
+        </div>
+        -->
+
+    </section>
+
+    <!-- DISCLAIMER -->
+    <section class="border border-(--border) rounded-2xl p-8 bg-(--surface) backdrop-blur-sm">
+
+        <p class="text-(--muted) text-sm leading-7 text-center">
+            El uso de este sitio web implica la aceptación de la presente Política de Privacidad y del tratamiento de la información conforme a lo aquí establecido.
+        </p>
+
+    </section>
 
 </main>

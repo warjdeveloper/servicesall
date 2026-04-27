@@ -1,50 +1,89 @@
 ---
-// astro
-// third
-// own
-import "@/styles/footer.css";
-// code
 ---
 
-<footer>
-    <div class="footer-top">
-        <div class="footer-section">
-            <h3>Servicesall</h3>
-            <p>Soluciones digitales para todos.</p>
-        </div>
+<footer class="mt-20 border-t border-(--border) bg-(--surface) backdrop-blur-sm">
 
-        <div class="footer-section">
-            <h4>Contacto</h4>
-            <p>
-                Email:
-                <a href="mailto:contacto@servicesall.com?subject=Consulta&body=Hola%20quiero%20información">
-                    contacto@servicesall.com
-                </a>
-            </p>
-            <p>
-                WhatsApp:
-                <a href="https://wa.me/570123456789?text=Hola%20Servicesall!" target="_blank">
-                    +57-0123456789
-                </a>
+    <div class="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
+
+        <!-- BRAND -->
+        <div class="flex flex-col gap-4">
+            <h3 class="text-2xl font-bold text-(--text)">Servicesall</h3>
+
+            <p class="text-(--muted) leading-7">
+                Soluciones digitales para todos con atención rápida, catálogo actualizado y gestión directa de pedidos.
             </p>
         </div>
 
-        <div class="footer-section">
-            <h4>Síguenos en redes sociales</h4>
-            <div class="socials">
-                <!-- Instagram -->
-                <a href="#" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
+        <!-- NAVEGACIÓN -->
+        <div class="flex flex-col gap-3">
+            <h4 class="text-(--text) font-semibold text-lg">Navegación</h4>
+
+            <a href="/" class="text-(--muted) hover:text-(--text) transition">Inicio</a>
+            <a href="/products" class="text-(--muted) hover:text-(--text) transition">Catálogo</a>
+            <a href="/about" class="text-(--muted) hover:text-(--text) transition">Sobre Nosotros</a>
+            <a href="/privacy" class="text-(--muted) hover:text-(--text) transition">Privacidad</a>
+            <a href="/terms" class="text-(--muted) hover:text-(--text) transition">Términos</a>
+        </div>
+
+        <!-- CONTACTO -->
+        <div class="flex flex-col gap-3">
+            <h4 class="text-(--text) font-semibold text-lg">Contacto</h4>
+
+            <a
+                href="mailto:contacto@servicesall.com?subject=Consulta&body=Hola%20quiero%20información"
+                class="text-(--muted) hover:text-(--text) transition"
+            >
+                contacto@servicesall.com
+            </a>
+
+            <a
+                href="https://wa.me/570123456789?text=Hola%20Servicesall!"
+                target="_blank"
+                class="text-(--muted) hover:text-(--text) transition"
+            >
+                +57 0123456789
+            </a>
+        </div>
+
+        <!-- REDES -->
+        <div class="flex flex-col gap-4">
+            <h4 class="text-(--text) font-semibold text-lg">Síguenos</h4>
+
+            <div class="flex gap-4">
+
+                <a href="#" aria-label="Instagram"
+                    class="border border-(--border) rounded-lg p-3 text-(--text) hover:bg-(--surface) transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" />
+                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                        <path d="M16.5 7.5v.01" />
+                    </svg>
                 </a>
-                <!-- Facebook -->
-                <a href="#" aria-label="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-meta"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 10.174c1.766 -2.784 3.315 -4.174 4.648 -4.174c2 0 3.263 2.213 4 5.217c.704 2.869 .5 6.783 -2 6.783c-1.114 0 -2.648 -1.565 -4.148 -3.652a27.627 27.627 0 0 1 -2.5 -4.174" /><path d="M12 10.174c-1.766 -2.784 -3.315 -4.174 -4.648 -4.174c-2 0 -3.263 2.213 -4 5.217c-.704 2.869 -.5 6.783 2 6.783c1.114 0 2.648 -1.565 4.148 -3.652c1 -1.391 1.833 -2.783 2.5 -4.174" /></svg>
+
+                <a href="#" aria-label="Facebook"
+                    class="border border-(--border) rounded-lg p-3 text-(--text) hover:bg-(--surface) transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 10.174c1.766 -2.784 3.315 -4.174 4.648 -4.174c2 0 3.263 2.213 4 5.217c.704 2.869 .5 6.783 -2 6.783c-1.114 0 -2.648 -1.565 -4.148 -3.652a27.627 27.627 0 0 1 -2.5 -4.174" />
+                        <path d="M12 10.174c-1.766 -2.784 -3.315 -4.174 -4.648 -4.174c-2 0 -3.263 2.213 -4 5.217c-.704 2.869 -.5 6.783 2 6.783c1.114 0 2.648 -1.565 4.148 -3.652c1 -1.391 1.833 -2.783 2.5 -4.174" />
+                    </svg>
                 </a>
+
             </div>
         </div>
+
     </div>
 
-    <div class="footer-bottom">
-        <p>&copy; 2026 Servicesall. Todos los derechos reservados.</p>
+    <!-- BOTTOM -->
+    <div class="border-t border-(--border)">
+        <div class="max-w-5xl mx-auto px-4 py-5 text-center">
+            <p class="text-(--muted) text-sm">
+                © 2026 Servicesall. Todos los derechos reservados.
+            </p>
+        </div>
     </div>
+
 </footer>

@@ -3,19 +3,18 @@ function initFilters() {
     const clearBtn = document.getElementById("clear-search");
     const categoryButtons = document.querySelectorAll(".category-btn");
 
-    // mostrar / ocultar botón
-    function toggleClearBtn() {
-        if (!clearBtn) return; // 🔥 clave
-        if ((input?.value || "").length > 0) {
-            clearBtn.classList.remove("hidden");
-        } else {
-            clearBtn.classList.add("hidden");
-        }
-    }
-
     let activeCategories = new Set();
 
-    // cargar desde localStorage (opcional)
+    function toggleClearBtn() {
+        if (!clearBtn || !input) return;
+
+        const show = input.value.length > 0;
+
+        clearBtn.classList.toggle("hidden", !show);
+        clearBtn.classList.toggle("flex", show);
+    }
+
+    // restore state
     const savedSearch = localStorage.getItem("search") || "";
     const savedCategories = JSON.parse(localStorage.getItem("categories") || "[]");
 
@@ -29,6 +28,7 @@ function initFilters() {
 
     input?.addEventListener("input", (e) => {
         clearTimeout(debounce);
+
         debounce = setTimeout(() => {
             localStorage.setItem("search", e.target.value);
             toggleClearBtn();
@@ -36,8 +36,9 @@ function initFilters() {
         }, 200);
     });
 
-    // click en la X
     clearBtn?.addEventListener("click", () => {
+        if (!input) return;
+
         input.value = "";
         localStorage.setItem("search", "");
         toggleClearBtn();
@@ -49,25 +50,20 @@ function initFilters() {
             const cat = btn.dataset.category.toLowerCase();
 
             if (cat === "__all__") {
-                // reset total
                 activeCategories.clear();
             } else {
-                if (activeCategories.has(cat)) {
-                    activeCategories.delete(cat);
-                } else {
-                    activeCategories.add(cat);
-                }
+                activeCategories.has(cat)
+                    ? activeCategories.delete(cat)
+                    : activeCategories.add(cat);
             }
 
             localStorage.setItem("categories", JSON.stringify([...activeCategories]));
-
             filter();
         });
     });
 
     function filter() {
         const search = (input?.value || "").toLowerCase().trim();
-
         const cards = document.querySelectorAll(".card");
 
         cards.forEach(card => {
@@ -75,33 +71,30 @@ function initFilters() {
             const description = card.dataset.description || "";
             const category = card.dataset.category || "";
 
-            const matchSearch = title.includes(search) || description.includes(search) || category.includes(search);
-            const matchCategory = activeCategories.size === 0 || activeCategories.has(category);
+            const matchSearch =
+                title.includes(search) ||
+                description.includes(search) ||
+                category.includes(search);
 
-            if (matchSearch && matchCategory) {
-                card.classList.remove("hidden");
-            } else {
-                card.classList.add("hidden");
-            }
+            const matchCategory =
+                activeCategories.size === 0 ||
+                activeCategories.has(category);
+
+            card.classList.toggle("hidden", !(matchSearch && matchCategory));
         });
 
         categoryButtons.forEach(btn => {
             const cat = btn.dataset.category.toLowerCase();
 
-            if (cat === "__all__") {
-                if (activeCategories.size === 0) {
-                    btn.classList.add("bg-blue-500", "text-blue-600");
-                } else {
-                    btn.classList.remove("bg-blue-500", "text-blue-600");
-                }
-                return;
-            }
+            const isActive =
+                cat !== "__all__"
+                    ? activeCategories.has(cat)
+                    : activeCategories.size === 0;
 
-            if (activeCategories.has(cat)) {
-                btn.classList.add("bg-blue-500", "text-blue-600");
-            } else {
-                btn.classList.remove("bg-blue-500", "text-blue-600");
-            }
+            btn.classList.toggle("bg-(--text)", isActive);
+            btn.classList.toggle("text-(--bg)", isActive);
+
+            btn.classList.toggle("text-(--text)", !isActive);
         });
     }
 }

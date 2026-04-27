@@ -1,33 +1,52 @@
 ---
-// astro
-// third
-// own
-import "@/styles/header.css";
-// code
 ---
 
-<nav>
-    <div class="nav-container">
-        <a href="/" class="logo text-black">
-            <!-- <img src="/favicon.png" alt="logo" class="logo-img" /> -->
-            <p class="text-black text-2x1 font-bold">Servicesall</p>
+<nav class="sticky top-0 z-9999 isolate border-b border-(--border) bg-(--bg)/80 backdrop-blur-md">
+
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+
+        <!-- LOGO -->
+        <a href="/" class="text-(--text) text-2xl font-bold tracking-wide">
+            Servicesall
         </a>
 
-        <!-- botón hamburguesa -->
-        <button id="menu-btn" aria-label="Abrir menú">
+        <!-- BOTON MOBILE -->
+        <button
+            id="menu-btn"
+            aria-label="Abrir menú"
+            class="md:hidden border border-(--border) rounded-lg w-11 h-11 text-(--text) hover:bg-(--surface) transition z-1001 relative text-2xl flex items-center justify-center"
+        >
             ☰
         </button>
 
-        <!-- menú -->
-        <div id="menu" class="menu">
-            <a href="/">Inicio</a>
-            <a href="/products">Productos</a>
-            <a href="/cart">Carrito</a>
-            <a href="/about">Sobre nosotros</a>
-            <a href="/privacy">Privacidad</a>
-            <a href="/terms">Terminos</a>
+        <!-- MENU DESKTOP -->
+        <div class="hidden md:flex items-center gap-6 text-sm lg:text-base">
+            <a href="/" class="text-(--muted) hover:text-(--text) transition">Inicio</a>
+            <a href="/products" class="text-(--muted) hover:text-(--text) transition">Productos</a>
+            <a href="/cart" class="text-(--muted) hover:text-(--text) transition">Carrito</a>
+            <a href="/about" class="text-(--muted) hover:text-(--text) transition">Sobre nosotros</a>
+            <a href="/privacy" class="text-(--muted) hover:text-(--text) transition">Privacidad</a>
+            <a href="/terms" class="text-(--muted) hover:text-(--text) transition">Términos</a>
         </div>
     </div>
+
 </nav>
+
+<!-- MENU MOBILE FULLSCREEN -->
+<div
+    id="menu"
+    class="fixed inset-0 bg-(--bg)/95 backdrop-blur-lg z-[9998] hidden items-center justify-center"
+>
+    <div class="flex flex-col items-center gap-8 text-2xl">
+
+        <a href="/" class="text-(--muted) hover:text-(--text) transition">Inicio</a>
+        <a href="/products" class="text-(--muted) hover:text-(--text) transition">Productos</a>
+        <a href="/cart" class="text-(--muted) hover:text-(--text) transition">Carrito</a>
+        <a href="/about" class="text-(--muted) hover:text-(--text) transition">Sobre nosotros</a>
+        <a href="/privacy" class="text-(--muted) hover:text-(--text) transition">Privacidad</a>
+        <a href="/terms" class="text-(--muted) hover:text-(--text) transition">Términos</a>
+
+    </div>
+</div>
 
 <script type="module" src="/scripts/menu.js"></script>

@@ -7,15 +7,48 @@ import "@/styles/btn-add-product-cart.css";
 const { product, productId } = Astro.props;
 ---
 
-<div class="product-btns" data-id={productId} data-product={JSON.stringify(product)}>
-	<!-- Add to Cart -->
-	<button class="btn-add-cart">Agregar al carrito</button>
-	<!-- Cantidad -->
-	<div class="btns-and-input">
-		<button class="btn-cart-remove">-</button>
-		<input type="number" value="1" min="1" disabled />
-		<button class="btn-cart-add">+</button>
-	</div>
+<div
+    class="flex flex-col gap-3 p-3 rounded-xl border border-(--border) bg-(--surface)"
+    data-cart-item
+    data-id={productId}
+    data-product={JSON.stringify(product)}
+>
+
+    <!-- ADD -->
+    <button
+        data-action="add"
+        class="w-full py-2 rounded-lg border border-(--border) text-(--text) hover:bg-(--surface) transition font-medium"
+    >
+        Agregar al carrito
+    </button>
+
+    <!-- CONTROLS -->
+    <div data-controls class="hidden items-center justify-between gap-2">
+
+        <button
+            data-action="minus"
+            class="w-10 h-10 rounded-lg border border-(--border) text-(--text)"
+        >
+            -
+        </button>
+
+        <input
+            type="number"
+            value="1"
+            min="1"
+            disabled
+            class="w-16 text-center bg-transparent border border-(--border) text-(--text) rounded-lg py-1"
+        />
+
+        <button
+            data-action="plus"
+            class="w-10 h-10 rounded-lg border border-(--border) text-(--text)"
+        >
+            +
+        </button>
+
+    </div>
+
 </div>
 
 <script type="module" src="/scripts/cart.js"></script>

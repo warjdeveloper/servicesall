@@ -1,39 +1,90 @@
 ---
-// astro
-// third
-// own
-// code
 ---
-<main class="about p-2">
 
-	<section class="intro">
-		<h1>Sobre nosotros</h1>
-		<p>
-		Somos una tienda enfocada en ofrecer productos accesibles
-		con un proceso de compra simple y directo.
-		</p>
-	</section>
+<main class="max-w-5xl mx-auto px-4 py-10 flex flex-col gap-16">
 
-	<section class="mission">
-		<h2>Nuestra misión</h2>
-		<p>
-		Facilitar la compra de productos sin procesos complicados.
-		</p>
-	</section>
+    <!-- INTRO -->
+    <section class="text-center flex flex-col gap-6 border border-(--border) rounded-2xl p-8 md:p-12 bg-(--surface) backdrop-blur-sm">
 
-	<section class="values">
-		<h2>Lo que nos diferencia</h2>
+        <h1 class="text-4xl md:text-5xl font-bold text-(--text)">
+            Sobre Nosotros
+        </h1>
 
-		<ul>
-		<li>Atención directa</li>
-		<li>Respuestas rápidas</li>
-		<li>Compra por WhatsApp</li>
-		</ul>
-	</section>
+        <p class="text-(--muted) text-lg md:text-xl max-w-3xl mx-auto leading-8">
+            Somos una tienda enfocada en ofrecer productos accesibles con un proceso de compra simple, rápido y directo para todos nuestros clientes.
+        </p>
 
-	<section class="contact-cta">
-		<h2>Hablemos</h2>
-		<a href="mailto:correo@ejemplo.com">Contacto</a>
-	</section>
+    </section>
+
+    <!-- MISIÓN -->
+    <section class="border border-(--border) rounded-2xl p-8 md:p-10 bg-(--surface) backdrop-blur-sm flex flex-col gap-4">
+
+        <h2 class="text-3xl font-bold text-(--text) text-center">
+            Nuestra Misión
+        </h2>
+
+        <p class="text-(--muted) text-center max-w-3xl mx-auto leading-8">
+            Facilitar la compra de productos sin procesos complicados, brindando una experiencia cómoda, atención cercana y soluciones rápidas en cada pedido.
+        </p>
+
+    </section>
+
+    <!-- DIFERENCIALES -->
+    <section class="flex flex-col gap-8">
+
+        <h2 class="text-3xl font-bold text-(--text) text-center">
+            Lo que nos diferencia
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <div class="border border-(--border) rounded-2xl p-6 bg-(--surface) backdrop-blur-sm text-center">
+                <h3 class="text-(--text) font-semibold text-xl mb-3">Atención directa</h3>
+                <p class="text-(--muted) leading-7">
+                    Comunicación clara y cercana para ayudarte antes, durante y después de tu compra.
+                </p>
+            </div>
+
+            <div class="border border-(--border) rounded-2xl p-6 bg-(--surface) backdrop-blur-sm text-center">
+                <h3 class="text-(--text) font-semibold text-xl mb-3">Respuestas rápidas</h3>
+                <p class="text-(--muted) leading-7">
+                    Gestionamos consultas y pedidos con agilidad para que no pierdas tiempo.
+                </p>
+            </div>
+
+            <div class="border border-(--border) rounded-2xl p-6 bg-(--surface) backdrop-blur-sm text-center">
+                <h3 class="text-(--text) font-semibold text-xl mb-3">Compra por WhatsApp</h3>
+                <p class="text-(--muted) leading-7">
+                    Finaliza tu compra fácilmente mediante atención personalizada y seguimiento directo.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="text-center flex flex-col gap-6 border border-(--border) rounded-2xl p-8 md:p-10 bg-(--surface) backdrop-blur-sm">
+
+        <h2 class="text-3xl md:text-4xl font-bold text-(--text)">
+            Hablemos
+        </h2>
+
+        <p class="text-(--muted) max-w-2xl mx-auto leading-7">
+            Si tienes dudas, deseas más información o necesitas atención personalizada, estaremos disponibles para ayudarte.
+        </p>
+
+        <!--
+        <div>
+            <a
+                href="mailto:correo@ejemplo.com"
+                class="inline-block border border-(--border) text-(--text) rounded-lg py-3 px-8 hover:bg-(--surface) transition"
+            >
+                Contacto
+            </a>
+        </div>
+        -->
+
+    </section>
 
 </main>
